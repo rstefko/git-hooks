@@ -3,7 +3,7 @@
 refname="$1"
 oldrev="$2"
 newrev="$3"
-regex="^(refs|fixes)\s\#[0-9]+\:"
+regex="^(refs|fixes) #[0-9]+: [A-Z].+"
 redmine_host=""
 redmine_apikey=""
 
@@ -47,7 +47,7 @@ do
     debug "Commit message: OK"
   else
     # Define format message for first line in commit message
-    info "Commit needs to be \"[refs|fix] #ID: message, but was $message\""
+    info "Commit needs to be \"[refs|fix] #ID: Message, but was $message\""
     exit 1
   fi
   
