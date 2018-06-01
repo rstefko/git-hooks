@@ -4,6 +4,7 @@ refname="$1"
 oldrev="$2"
 newrev="$3"
 regex="^(refs|fixes) #[0-9]+: [A-Z0-9].+"
+merge_message="Merge branch 'master' of"
 redmine_host=""
 redmine_apikey=""
 
@@ -42,7 +43,7 @@ for commit in $commits
 do
   # Check the log message for ticket number
   message=`git log --format=%s -1 $commit`
-  if [[ "$message" =~ $regex ]]
+  if [[ "$message" =~ $regex ]] || [[ "$message" == $merge_message* ]] ;
   then
     debug "Commit message: OK"
   else
